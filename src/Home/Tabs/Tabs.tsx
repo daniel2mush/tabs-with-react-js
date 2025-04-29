@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { TabContent } from "./TabContent";
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(TabContent[0].id);
   return (
     <section>
-      <div className=" w-[90%]  flex space-x-2 ml-[2rem] mt-10  ">
+      <div className=" w-[90%]  flex ml-[2rem] mt-10 border-b  border-gray-200  ">
         {TabContent.map((tab) => (
-          <section className=" w-full">
+          <section className=" w-full ">
             <div
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full border-b-2 flex cursor-pointer justify-center pb-2 ${
+              className={`w-full cursor-pointer justify-center pb-2 ${
                 tab.id === activeTab
-                  ? "border-b-4 border-gray-400 font-bold rounded-sm"
-                  : ""
+                  ? "border-b-2 border-gray-400 font-bold "
+                  : "boder-b"
               }`}>
               <div className=" flex text-[12px] text-gray-500 justify-center items-center">
                 {tab.icon}
@@ -25,11 +25,7 @@ const Tabs = () => {
         ))}
       </div>
       <div className=" w-[95%]">
-        {TabContent.map((tab) => (
-          <div className=" w-[100%]">
-            {tab.id === activeTab && <div>{tab.content}</div>}
-          </div>
-        ))}
+        {TabContent.find((tab) => tab.id === activeTab)?.content}
       </div>
     </section>
   );
